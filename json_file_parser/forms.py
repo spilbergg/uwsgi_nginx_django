@@ -12,8 +12,8 @@ class UploadFileJsonForms(forms.Form):
                                     "required": "Прикрепите файл!"
                                 })
 
-    # валидация
     def clean_json_file(self):
+        """Валидация"""
         json_file = self.cleaned_data['json_file']
 
         if not json_file.name.endswith(".json"):
@@ -31,7 +31,9 @@ class UploadFileJsonForms(forms.Form):
             return
 
         for i in json_data:
-            if 'name' not in i and 'date' not in i:
+            print(json_data)
+            print(i)
+            if 'name' not in i or 'date' not in i:
                 self.add_error('json_file', 'JSON содержит невалидные ключи.')
                 return
 
