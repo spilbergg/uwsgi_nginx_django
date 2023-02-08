@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block static %}
+	{{ block.super }}
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.css">
+{% endblock static %}
+{% block content %}
+{{ block.super }}
+<table id="table_id" class="display">
+	<thead>
+	<tr>
+		<th>Имя</th>
+		<th>Дата</th>
+	</tr>
+	</thead>
+	<tbody>
+	{% for item in data %}
+		<tr>
+			<td>{{ item.name }}</td>
+			<td>{{ item.date }}</td>
+		</tr>
+	{% endfor %}
+	</tbody>
+</table>
+<form action="">
+	<button type="submit" formaction="{% url 'get_form' %}">Назад</button>
+</form>
+
+{% endblock content %}
+
+{% block js %}
+	{{ block.super }}
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+	<script src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.min.js"></script>
+	<script>
+    $(document).ready(function () {
+        $('#table_id').DataTable({
+            "pageLength": 10,
+        });
+    });
+	</script>
+{% endblock js %}
