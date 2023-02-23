@@ -77,21 +77,23 @@
 
 2) Переместить конфиг proj_nginx.conf в папку nginx
         
-       mv proj1_nginx.conf /etc/nginx/sites-available/
+       sudo cp proj1_nginx.conf /etc/nginx/sites-available/
 
 3) Создать символьную ссылку на файл 
         
         sudo ln -s /etc/nginx/sites-available/proj1_nginx.conf /etc/nginx/sites-enabled/
+4) В Файле uwsgi.ini в корневой директории проекта в путях имя spilbergg заменить на своё имя комьютера
+   
 
-4) Перезапустить nginx
+5) Перезапустить nginx
         
         sudo service nginx restart
 
-5) Собрать всю статику
+6) Собрать всю статику
         
         python manage.py collectstatic
 
-6) Затем запустить uwsgi.ini (конфигурационные настройки uwsgi находятся в файле uwsgi.ini(корневой директории проекта)): 
+7) Затем запустить uwsgi.ini (конфигурационные настройки uwsgi находятся в файле uwsgi.ini(корневой директории проекта)): 
         
         uwsgi uwsgi.ini
 
